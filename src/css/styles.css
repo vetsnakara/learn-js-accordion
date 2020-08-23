@@ -125,9 +125,13 @@ a:active {
   display: none;
 }
 
+.accordion.is-open .accordion__content {
+  display: grid;
+}
+
 /* Accordion content */
 .accordion__content {
-  display: grid;
+  display: none;
   grid-template-columns: 7.5em 1fr;
   grid-column-gap: 1.5em;
   align-items: center;
