@@ -5,20 +5,16 @@ const IS_OPEN_CLASS = 'is-open'
 accordionContainer.addEventListener('click', e => {
   const accordionHeader = e.target.closest('.accordion__header')
 
-  if (accordionHeader) {
-    const accordion = accordionHeader.parentElement
-    const accordionContent = accordionHeader.nextElementSibling
-    const accordionInner = accordionContent.children[0]
+  if (!accordionHeader) return
 
-    const height = accordionInner.getBoundingClientRect().height
+  const accordion = accordionHeader.parentElement
+  accordion.classList.toggle(IS_OPEN_CLASS)
 
-    accordion.classList.toggle(IS_OPEN_CLASS)
+  const accordionContent = accordionHeader.nextElementSibling
+  const accordionInner = accordionContent.children[0]
+  const { height } = accordionInner.getBoundingClientRect()
 
-    if (accordion.classList.contains(IS_OPEN_CLASS)) {
-      accordionContent.style.height = height + 'px'
-    } else {
-      accordionContent.style.height = 0;
-    }
-
-  }
+  accordionContent.style.height = accordion.classList.contains(IS_OPEN_CLASS)
+    ? `${height}px`
+    : 0
 })
